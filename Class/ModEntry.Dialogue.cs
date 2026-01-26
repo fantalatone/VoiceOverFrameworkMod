@@ -293,6 +293,7 @@ namespace VoiceOverFrameworkMod
                     string characterName = currentSpeaker.Name;
                     string voicePackLanguage = GetVoicePackLanguageForCharacter(characterName);
 
+
                     if (!string.IsNullOrWhiteSpace(finalLookupKey))
                     {
                         // Prevent replay on same page
@@ -303,57 +304,45 @@ namespace VoiceOverFrameworkMod
                             return;
                         }
 
-                        if (gameLanguage == voicePackLanguage)
+                        // Normalize language compare (handles ja vs ja-JP, en vs en-US, etc.)
+                        string gameLangNorm = (gameLanguage ?? "").ToLowerInvariant();
+                        string packLangNorm = (voicePackLanguage ?? "").ToLowerInvariant();
+
+                        bool sameLanguage =
+                            gameLangNorm == packLangNorm ||
+                            (!string.IsNullOrEmpty(gameLangNorm) && packLangNorm.StartsWith(gameLangNorm)) ||
+                            (!string.IsNullOrEmpty(packLangNorm) && gameLangNorm.StartsWith(packLangNorm));
+
+                        // --- Always attempt dictionary->DialogueFrom first (fixes V1 JA pack not playing when game is JA) ---
+                        // Your GetDialogueFrom early-outs when gameLang == packLang, so force it to run by passing "different" lang strings.
+                        // The lookup itself is based on sanitized displayed text anyway.
+                        string resolvedFrom = null;
+                        if (Multilingual != null)
+                            resolvedFrom = Multilingual.GetDialogueFrom(characterName, "xx", "yy", currentDisplayedString);
+
+                        if (Config.developerModeOn)
                         {
-                            if (Config.developerModeOn)
-                            {
-                                Monitor.Log($"[VOICE] Game and voice pack language are the same ({gameLanguage}). Using sanitized key directly.", LogLevel.Trace);
-                                Monitor.Log($"Attempting voice for '{characterName}'. Lookup Key: '{finalLookupKey}' (From Displayed: '{currentDisplayedString}')", LogLevel.Debug);
-                            }
-
-                            TryToPlayVoice(characterName, finalLookupKey, currentLanguageCode);
-                            _lastPlayedLookupKey = finalLookupKey; // mark as played
-                        }
-                        else
-                        {
-                            if (Config.developerModeOn)
-                            {
-                                Monitor.Log($"[ERROR] Null detected in GetDialogueFrom inputs:", LogLevel.Error);
-                                Monitor.Log($"  Multilingual: {(Multilingual == null ? "null" : "OK")}", LogLevel.Error);
-                                Monitor.Log($"  characterName: {(characterName ?? "null")}", LogLevel.Error);
-                                Monitor.Log($"  gameLanguage: {(gameLanguage ?? "null")}", LogLevel.Error);
-                                Monitor.Log($"  voicePackLanguage: {(voicePackLanguage ?? "null")}", LogLevel.Error);
-                                Monitor.Log($"  currentDisplayedString: {(currentDisplayedString ?? "null")}", LogLevel.Error);
-                            }
-
-                            string resolvedFrom = Multilingual.GetDialogueFrom(characterName, gameLanguage, voicePackLanguage, currentDisplayedString);
-
-                            if (Config.developerModeOn)
-                            {
-                                Monitor.Log($"[VOICE - MULTILINGUAL]", LogLevel.Info);
-                                Monitor.Log($"Character: {characterName}", LogLevel.Info);
-                                Monitor.Log($"Game Language: {gameLanguage}", LogLevel.Info);
-                                Monitor.Log($"Voice Pack Language: {voicePackLanguage}", LogLevel.Info);
-                                Monitor.Log($"Original Game Dialogue: \"{currentDisplayedString}\"", LogLevel.Info);
-                                Monitor.Log($"Sanitized Game Dialogue: \"{Regex.Replace(SanitizeDialogueText(currentDisplayedString?.Replace(farmerName, "@")), @"#.+?#", "").Trim()}\"", LogLevel.Info);
-                                if (resolvedFrom != null)
-                                    Monitor.Log($"Dictionary Match Found:  DialogueFrom = \"{resolvedFrom}\"", LogLevel.Info);
-                            }
-
+                            Monitor.Log($"[VOICE] Speaker={characterName} gameLang={gameLanguage} packLang={voicePackLanguage} sameLang={sameLanguage}", LogLevel.Trace);
+                            Monitor.Log($"[VOICE] Displayed: \"{currentDisplayedString}\"", LogLevel.Trace);
+                            Monitor.Log($"[VOICE] LookupKey(text): \"{finalLookupKey}\"", LogLevel.Trace);
                             if (!string.IsNullOrEmpty(resolvedFrom))
-                            {
-                                var pack = GetSelectedVoicePack(characterName);
-
-                                string finalKey = resolvedFrom;
-
-                                if (Config.developerModeOn)
-                                    Monitor.Log($"[VOICE - MULTILINGUAL] Adjusted key with page (capped): {finalKey}", LogLevel.Debug);
-
-                                TryToPlayVoiceFromDialogueKey(characterName, finalKey, currentLanguageCode);
-                                _lastPlayedLookupKey = finalLookupKey; // mark as played
-                            }
+                                Monitor.Log($"[VOICE] Dictionary resolved DialogueFrom: \"{resolvedFrom}\"", LogLevel.Trace);
                         }
+
+                        if (!string.IsNullOrEmpty(resolvedFrom))
+                        {
+                            // Prefer DialogueFrom-based playback when we can resolve it
+                            TryToPlayVoiceFromDialogueKey(characterName, resolvedFrom, currentLanguageCode);
+                            _lastPlayedLookupKey = finalLookupKey;
+                            return;
+                        }
+
+                        // --- Fallback behavior ---
+                        // If dictionary didn't resolve, use your original text-based lookup
+                        TryToPlayVoice(characterName, finalLookupKey, currentLanguageCode);
+                        _lastPlayedLookupKey = finalLookupKey;
                     }
+
                 }
             }
             // No longer reset immediately here; handled by debounce above
