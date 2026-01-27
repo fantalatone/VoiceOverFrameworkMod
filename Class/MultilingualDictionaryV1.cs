@@ -94,13 +94,23 @@ namespace VoiceOverFrameworkMod
 
                             foreach (var entry in pack.Entries)
                             {
-                                string preSanitized = entry.DialogueText?.Trim();
-                                if (string.IsNullOrWhiteSpace(preSanitized)) continue;
+                                string raw = entry.DialogueText?.Trim();
+                                if (string.IsNullOrWhiteSpace(raw)) continue;
 
-                                // Insert if not already present
-                                if (!charMap.ContainsKey(preSanitized))
+                                // 1) Store RAW DialogueText (backwards compatible with existing behavior)
+                                if (!charMap.ContainsKey(raw))
                                 {
-                                    charMap[preSanitized] = entry.DialogueFrom;
+                                    charMap[raw] = entry.DialogueFrom;
+                                    added++;
+                                }
+
+                                // 2) Also store SANITIZED DialogueText (matches runtime lookup key)
+                                string sanitizedKey = Mod.SanitizeDialogueText(raw);
+                                sanitizedKey = Regex.Replace(sanitizedKey, @"#.+?#", "").Trim();
+
+                                if (!string.IsNullOrWhiteSpace(sanitizedKey) && !charMap.ContainsKey(sanitizedKey))
+                                {
+                                    charMap[sanitizedKey] = entry.DialogueFrom;
                                     added++;
                                 }
                             }
@@ -120,6 +130,7 @@ namespace VoiceOverFrameworkMod
                     LogLevel.Trace
                 );
             }
+
 
             /// <summary>
             /// Back-compat shim for older call sites. Loads all languages found on disk for the character.
