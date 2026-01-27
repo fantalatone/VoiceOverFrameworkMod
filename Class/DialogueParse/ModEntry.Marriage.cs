@@ -44,11 +44,11 @@ namespace VoiceOverFrameworkMod
                     outList.Add(new VoiceEntryTemplate
                     {
                         DialogueFrom = processingKey,
-                        DialogueText = p.Actor,   // Actor-facing (portrait tags kept)
+                        DialogueText = p.Actor,          // Actor-facing (portrait tags kept)
                         AudioPath = path,
                         TranslationKey = tk,
                         PageIndex = p.PageIndex,
-                        DisplayPattern = p.Display, // Player-facing (portrait tags stripped)
+                        DisplayPattern = p.Display,      // Player-facing (portrait tags stripped)
                         GenderVariant = p.Gender
                     });
 
@@ -61,17 +61,36 @@ namespace VoiceOverFrameworkMod
 
             return outList;
         }
-        
-        private static readonly string[] SpouseNames = new[]
+
+        /// <summary>
+        /// Detect whether a dialogue key ends with "_NpcName" where NpcName is a known character name
+        /// (vanilla OR modded). Example: "Bad_1_Sophia" -> suffix "Sophia".
+        /// </summary>
+        private bool TryGetNpcSuffix(string key, HashSet<string> knownNames, out string suffix)
         {
-            "Abigail","Alex","Elliott","Emily","Haley","Harvey","Leah",
-            "Maru","Penny","Sam","Sebastian","Shane","Krobus"
-        };
+            suffix = null;
+            if (string.IsNullOrWhiteSpace(key))
+                return false;
+
+            int idx = key.LastIndexOf('_');
+            if (idx < 0 || idx == key.Length - 1)
+                return false;
+
+            string candidate = key.Substring(idx + 1);
+            if (knownNames.Contains(candidate))
+            {
+                suffix = candidate;
+                return true;
+            }
+
+            return false;
+        }
 
         /// <summary>
         /// Load marriage dialogue (language-aware) for a specific spouse and merge:
-        ///   - Characters/Dialogue/MarriageDialogue(.lang)              [generic]
-        ///       * keeps keys with no suffix and keys with "_{characterName}"
+        ///   - Characters/Dialogue/MarriageDialogue(.lang)                [generic]
+        ///       * keeps keys with no NPC suffix, and keys that end with _{characterName}
+        ///       * skips keys that end with _{OtherNpcName}
         ///   - Characters/Dialogue/MarriageDialogue{characterName}(.lang) [per-spouse]
         ///
         /// TranslationKey format:
@@ -88,6 +107,9 @@ namespace VoiceOverFrameworkMod
             bool isEnglish = languageCode.Equals("en", StringComparison.OrdinalIgnoreCase);
             string langSuffix = isEnglish ? "" : $".{languageCode}";
 
+            // Build once: includes vanilla + modded NPC names so suffix filtering works for SVE spouses like Sophia.
+            var knownNames = new HashSet<string>(GetAllKnownCharacterNames(), StringComparer.OrdinalIgnoreCase);
+
             // 1) Load generic sheet
             Dictionary<string, string> generic = null;
             try
@@ -98,7 +120,7 @@ namespace VoiceOverFrameworkMod
                 }
                 catch (ContentLoadException)
                 {
-                    // fallback to base (some games might not ship localized split files in unpacked content)
+                    // fallback to base (some installs might not ship localized split files in unpacked content)
                     generic = gameContent.Load<Dictionary<string, string>>("Characters/Dialogue/MarriageDialogue");
                 }
             }
@@ -127,10 +149,13 @@ namespace VoiceOverFrameworkMod
                 this.Monitor?.Log($"Error reading MarriageDialogue{characterName}{langSuffix}: {ex.Message}", LogLevel.Trace);
             }
 
+            if (this.Config?.developerModeOn == true)
+                this.Monitor?.Log($"[Marriage] {characterName}: generic={(generic?.Count ?? 0)} perSpouse={(perSpouse?.Count ?? 0)}", LogLevel.Trace);
+
             // 3) Merge (per-spouse overrides generic)
             var merged = new Dictionary<string, (string Raw, string SourceInfo, string TK)>(StringComparer.OrdinalIgnoreCase);
 
-            // 3a) Generic: keep keys with no spouse suffix OR with _{characterName}
+            // 3a) Generic: keep keys with no NPC suffix OR suffix matches this character
             if (generic != null && generic.Count > 0)
             {
                 foreach (var kvp in generic)
@@ -141,15 +166,16 @@ namespace VoiceOverFrameworkMod
                     if (string.IsNullOrWhiteSpace(key) || string.IsNullOrWhiteSpace(raw))
                         continue;
 
-                    bool endsWithAnySpouse = SpouseNames.Any(n => key.EndsWith("_" + n, StringComparison.OrdinalIgnoreCase));
-                    bool endsWithThisSpouse = key.EndsWith("_" + characterName, StringComparison.OrdinalIgnoreCase);
-
-                    if (!endsWithAnySpouse || endsWithThisSpouse)
+                    // If the key ends with _<NpcName>, only keep if it matches this NPC.
+                    if (TryGetNpcSuffix(key, knownNames, out var suffixName) &&
+                        !suffixName.Equals(characterName, StringComparison.OrdinalIgnoreCase))
                     {
-                        string tk = $"Characters/Dialogue/MarriageDialogue:{key}";
-                        string src = $"Marriage/{characterName}/{key}";
-                        merged[key] = (raw, src, tk);
+                        continue;
                     }
+
+                    string tk = $"Characters/Dialogue/MarriageDialogue:{key}";
+                    string src = $"Marriage/{characterName}/{key}";
+                    merged[key] = (raw, src, tk);
                 }
             }
 
@@ -160,6 +186,7 @@ namespace VoiceOverFrameworkMod
                 {
                     string key = kvp.Key?.Trim();
                     string raw = kvp.Value;
+
                     if (string.IsNullOrWhiteSpace(key) || string.IsNullOrWhiteSpace(raw))
                         continue;
 
@@ -170,7 +197,7 @@ namespace VoiceOverFrameworkMod
             }
 
             // 4) Emit in deterministic order (by key)
-            foreach (var kvp in merged.OrderBy(k => k.Key))
+            foreach (var kvp in merged.OrderBy(k => k.Key, StringComparer.OrdinalIgnoreCase))
                 results.Add((kvp.Value.Raw, kvp.Value.SourceInfo, kvp.Value.TK));
 
             if (this.Config?.developerModeOn == true)

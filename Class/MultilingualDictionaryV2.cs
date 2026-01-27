@@ -556,7 +556,7 @@ namespace VoiceOverFrameworkMod
                 Mod.cache.Clear();
                 Mod.loadedLangs.Clear();
                 Mod.tkToPath.Clear();
-                Mod.tkPageToDisplayKey.Clear(); // NEW
+                Mod.tkPageToDisplayKey.Clear();
                 Monitor.Log("[MultilingualDictionaryV2] Cleared all cached entries.", LogLevel.Trace);
             }
 
