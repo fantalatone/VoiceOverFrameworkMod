@@ -9,6 +9,106 @@ namespace VoiceOverFrameworkMod
 {
     public partial class ModEntry : Mod
     {
+
+        //Used on runtime to determine if a character is mariage candidate
+        private bool IsMarriageCandidate(string characterName)
+        {
+            if (string.IsNullOrWhiteSpace(characterName))
+                return false;
+
+            // Must exist as an NPC (filters out Bear, Gourmand, Governor, etc.)
+            NPC npc = Game1.getCharacterFromName(characterName, false);
+            if (npc == null)
+                return false;
+
+            // ------------------------------------------------------------------
+            // 1) Prefer real NPC data if available (works for modded characters)
+            // ------------------------------------------------------------------
+            try
+            {
+                var data = npc.GetData();
+                if (data != null)
+                {
+                    // One of these exists depending on SDV version / mappings
+                    var datableProp =
+                        data.GetType().GetProperty("Datable")
+                        ?? data.GetType().GetProperty("CanBeRomanced");
+
+                    if (datableProp?.GetValue(data) is bool datable && datable)
+                        return true;
+                }
+            }
+            catch
+            {
+                // Ignore reflection failures, fall through to heuristics
+            }
+
+            // ------------------------------------------------------------------
+            // 2) Character-specific engagement or marriage assets
+            // ------------------------------------------------------------------
+            try
+            {
+                if (this.Helper.GameContent.DoesAssetExist<Dictionary<string, string>>(
+                        this.Helper.GameContent.ParseAssetName($"Characters/Dialogue/EngagementDialogue{characterName}")))
+                    return true;
+
+                if (this.Helper.GameContent.DoesAssetExist<Dictionary<string, string>>(
+                        this.Helper.GameContent.ParseAssetName($"Characters/Dialogue/MarriageDialogue{characterName}")))
+                    return true;
+            }
+            catch { }
+
+            // ------------------------------------------------------------------
+            // 3) Krobus special case (roommate, not standard marriage)
+            // ------------------------------------------------------------------
+            if (characterName.Equals("Krobus", StringComparison.OrdinalIgnoreCase))
+            {
+                try
+                {
+                    if (this.Helper.GameContent.DoesAssetExist<Dictionary<string, string>>(
+                            this.Helper.GameContent.ParseAssetName("Characters/Dialogue/MarriageDialogueKrobus")))
+                        return true;
+                }
+                catch { }
+            }
+
+            // ------------------------------------------------------------------
+            // 4) Last-resort heuristic:
+            // If shared MarriageDialogue contains keys clearly referencing this NPC
+            // ------------------------------------------------------------------
+            try
+            {
+                if (this.Helper.GameContent.DoesAssetExist<Dictionary<string, string>>(
+                        this.Helper.GameContent.ParseAssetName("Characters/Dialogue/MarriageDialogue")))
+                {
+                    var dict = this.Helper.GameContent.Load<Dictionary<string, string>>(
+                        "Characters/Dialogue/MarriageDialogue");
+
+                    foreach (string key in dict.Keys)
+                    {
+                        if (string.IsNullOrWhiteSpace(key))
+                            continue;
+
+                        // Conservative matching to avoid false positives
+                        if (key.Equals(characterName, StringComparison.OrdinalIgnoreCase)
+                            || key.StartsWith(characterName + "_", StringComparison.OrdinalIgnoreCase)
+                            || key.EndsWith("_" + characterName, StringComparison.OrdinalIgnoreCase)
+                            || key.Contains("_" + characterName + "_", StringComparison.OrdinalIgnoreCase))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch { }
+
+            // ------------------------------------------------------------------
+            // Not a marriage candidate
+            // ------------------------------------------------------------------
+            return false;
+        }
+
+
         // List of known language codes used by Stardew Valley
         private readonly List<string> KnownStardewLanguages = new List<string> {
             "en", "es-ES", "zh-CN", "ja-JP", "pt-BR", "fr-FR", "ko-KR", "it-IT", "de-DE", "hu-HU", "ru-RU", "tr-TR"
@@ -24,6 +124,8 @@ namespace VoiceOverFrameworkMod
             int i = s.IndexOf('-');
             return i > 0 ? s.Substring(0, i) : s;
         }
+
+
 
 
 

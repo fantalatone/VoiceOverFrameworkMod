@@ -364,12 +364,12 @@ namespace VoiceOverFrameworkMod
                 //  Reactored all dialogue  sanitizer rules
                 characterManifest.Entries.AddRange(BuildFromCharacterDialogue(characterName, languageCode, this.Helper.GameContent, ref entryNumber, desiredExtension));
 
-                //if (IsMarriableCharacter(characterName))
-                //{
+                if (IsMarriageCandidate(characterName))
+                {
                     characterManifest.Entries.AddRange(BuildFromEngagement(characterName, languageCode, this.Helper.GameContent, ref entryNumber, desiredExtension));
                     characterManifest.Entries.AddRange(BuildFromMarriageDialogue(characterName, languageCode, this.Helper.GameContent, ref entryNumber, desiredExtension));
 
-                //}
+                }
 
                 //String/Locations.json has both dialogue and events in same dialogue file so parsing it 2 different files
                 characterManifest.Entries.AddRange(BuildFromStringLocationsDialogue(characterName, languageCode, this.Helper.GameContent, ref entryNumber, desiredExtension));
@@ -710,7 +710,7 @@ namespace VoiceOverFrameworkMod
             // Core dialogue
             all.AddRange(BuildFromCharacterDialogue(characterName, languageCode, this.Helper.GameContent, ref dummy, ext));
 
-            if (IsMarriableCharacter(characterName))
+            if (IsMarriageCandidate(characterName))
             {
                 all.AddRange(BuildFromEngagement(characterName, languageCode, this.Helper.GameContent, ref dummy, ext));
                 all.AddRange(BuildFromMarriageDialogue(characterName, languageCode, this.Helper.GameContent, ref dummy, ext));

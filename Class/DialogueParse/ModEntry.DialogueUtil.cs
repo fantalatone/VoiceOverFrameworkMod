@@ -17,15 +17,6 @@ namespace VoiceOverFrameworkMod
             public string Gender;
         }
 
-        private static readonly HashSet<string> VanillaMarriables =
-            new(StringComparer.OrdinalIgnoreCase)
-            {
-                "Abigail","Alex","Elliott","Emily","Haley","Harvey",
-                "Leah","Maru","Penny","Sam","Sebastian","Shane", "Krobus"
-            };
-
-        private bool IsMarriableCharacter(string name) =>
-            !string.IsNullOrWhiteSpace(name) && VanillaMarriables.Contains(name);
 
         /// <summary>Shared helpers for splitting & sanitizing Stardew Valley dialogue.</summary>
         private static class DialogueUtil

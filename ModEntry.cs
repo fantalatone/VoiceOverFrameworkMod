@@ -61,12 +61,50 @@ namespace VoiceOverFrameworkMod
             // 1. Hardcoded vanilla characters (always included)
             string[] vanillaNames = new[]
             {
-                "Abigail", "Alex", "Caroline", "Clint", "Demetrius", "Dwarf", "Elliott", "Emily", "Evelyn", "George",
-                "Gil", "Gus", "Haley", "Harvey", "Jas", "Jodi", "Kent", "Krobus", "Leah", "Leo", "LeoMainland",
-                "Lewis", "Linus", "Marnie", "Maru", "Mister Qi", "Pam", "Penny", "Pierre", "Robin",
-                "Sam", "Sandy", "Sebastian", "Shane", "Vincent", "Willy", "Wizard", "Birdie", "Gunther",
-                "Marlon", "Morris", "Henchman", "Bouncer", "Grandpa", "Governor", "Professor Snail"
+                // ------------------------------------------------------------------
+                // Core villagers (marriageable + regular town NPCs)
+                // ------------------------------------------------------------------
+                "Abigail", "Alex", "Caroline", "Clint", "Demetrius", "Dwarf", "Elliott", "Emily",
+                "Evelyn", "George", "Gus", "Haley", "Harvey", "Jas", "Jodi", "Kent", "Krobus",
+                "Leah", "Leo", "LeoMainland", "Lewis", "Linus", "Marnie", "Maru",
+                "Mister Qi", "Pam", "Penny", "Pierre", "Robin",
+                "Sam", "Sandy", "Sebastian", "Shane", "Vincent", "Willy", "Wizard",
+
+                // ------------------------------------------------------------------
+                // Non-marriage / special NPCs with dialogue
+                // ------------------------------------------------------------------
+                "Birdie",
+                "Gunther",
+                "Marlon",
+                "Gil",
+                "Morris",
+                "Bouncer",
+                "Henchman",
+                "Governor",
+                "Grandpa",
+                "Professor Snail",
+
+                // ------------------------------------------------------------------
+                // Event-only / temporary actors that DO speak (Strings/Locations, Events)
+                // ------------------------------------------------------------------
+                "Bear",        // Woods event
+                "Gourmand",    // Island gourmand frog
+                "Mariner",     // Old Mariner (mermaid pendant)
+                "ParrotBoy",   // Island parrot kid
+                "SafariGuy",   // Speaker token used before translateName -> Professor Snail
+                "TrashBear",   // Raccoon bear quest NPC
+
+                // ------------------------------------------------------------------
+                // SVE VANILLA VARIANT IDs
+                // (Stardew Valley Expanded introduces separate NPC IDs that represent
+                // vanilla characters in SVE-specific events/dialogue. These must remain
+                // so audio can play for both vanilla and SVE content.)
+                // ------------------------------------------------------------------
+                "MorrisTod",      // SVE variant of Morris
+                "GuntherSilvian", // SVE variant of Gunther
+                "MarlonFay"       // SVE variant of Marlon
             };
+
 
             foreach (string name in vanillaNames)
             {
