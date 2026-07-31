@@ -6,6 +6,10 @@ namespace VoiceOverFrameworkMod
     {
         public string DefaultLanguage { get; set; } = "en";
         public float MasterVolume { get; set; } = 1.0f;
+
+        // Mail data
+        public bool EnableMails { get; set; } = false;
+        
         public bool turnoffdialoguetypingsound = true;
         public bool FallbackToDefaultIfMissing { get; set; } = false;
         public Dictionary<string, string> SelectedVoicePacks { get; set; } = new();
@@ -93,4 +97,23 @@ namespace VoiceOverFrameworkMod
         public string? DialogueTextPortedFromV1 { get; set; }  //Used for Dialogue conversions from V1 to V2 used as referenced so user can manually check and revalidated manually if needed.
     }
 
+    /*
+        Support for mails
+     */
+
+    public class MailPack
+    {
+        public Dictionary<string, string> Entries { get; set; }
+    }
+
+    public class MailPackFile
+    {
+        public List<MailEntryTemplate> Entries { get; set; } = new();
+    }
+
+    public class MailEntryTemplate
+    {
+        public string TranslationKey { get; set; }
+        public string AudioPath { get; set; }
+    }
 }

@@ -1,0 +1,720 @@
+{
+    "Entries": [
+        {
+            "TranslationKey": "Robin",
+            "AudioPath": "assets/tr-TR/Mails/1.wav"
+        },
+        {
+            "TranslationKey": "Demetrius",
+            "AudioPath": "assets/tr-TR/Mails/2.wav"
+        },
+        {
+            "TranslationKey": "Linus",
+            "AudioPath": "assets/tr-TR/Mails/3.wav"
+        },
+        {
+            "TranslationKey": "Pierre",
+            "AudioPath": "assets/tr-TR/Mails/4.wav"
+        },
+        {
+            "TranslationKey": "Caroline",
+            "AudioPath": "assets/tr-TR/Mails/5.wav"
+        },
+        {
+            "TranslationKey": "George",
+            "AudioPath": "assets/tr-TR/Mails/6.wav"
+        },
+        {
+            "TranslationKey": "Evelyn",
+            "AudioPath": "assets/tr-TR/Mails/7.wav"
+        },
+        {
+            "TranslationKey": "Pam",
+            "AudioPath": "assets/tr-TR/Mails/8.wav"
+        },
+        {
+            "TranslationKey": "Lewis",
+            "AudioPath": "assets/tr-TR/Mails/9.wav"
+        },
+        {
+            "TranslationKey": "Gus",
+            "AudioPath": "assets/tr-TR/Mails/10.wav"
+        },
+        {
+            "TranslationKey": "Clint",
+            "AudioPath": "assets/tr-TR/Mails/11.wav"
+        },
+        {
+            "TranslationKey": "Jodi",
+            "AudioPath": "assets/tr-TR/Mails/12.wav"
+        },
+        {
+            "TranslationKey": "Kent",
+            "AudioPath": "assets/tr-TR/Mails/13.wav"
+        },
+        {
+            "TranslationKey": "Emily",
+            "AudioPath": "assets/tr-TR/Mails/14.wav"
+        },
+        {
+            "TranslationKey": "Marnie",
+            "AudioPath": "assets/tr-TR/Mails/15.wav"
+        },
+        {
+            "TranslationKey": "Shane",
+            "AudioPath": "assets/tr-TR/Mails/16.wav"
+        },
+        {
+            "TranslationKey": "Wizard",
+            "AudioPath": "assets/tr-TR/Mails/17.wav"
+        },
+        {
+            "TranslationKey": "Sandy",
+            "AudioPath": "assets/tr-TR/Mails/18.wav"
+        },
+        {
+            "TranslationKey": "afterSamShow",
+            "AudioPath": "assets/tr-TR/Mails/19.wav"
+        },
+        {
+            "TranslationKey": "afterArtShow",
+            "AudioPath": "assets/tr-TR/Mails/20.wav"
+        },
+        {
+            "TranslationKey": "haleyGarden",
+            "AudioPath": "assets/tr-TR/Mails/21.wav"
+        },
+        {
+            "TranslationKey": "PennyCleanTrailer",
+            "AudioPath": "assets/tr-TR/Mails/22.wav"
+        },
+        {
+            "TranslationKey": "Duck",
+            "AudioPath": "assets/tr-TR/Mails/23.wav"
+        },
+        {
+            "TranslationKey": "Rabbits",
+            "AudioPath": "assets/tr-TR/Mails/24.wav"
+        },
+        {
+            "TranslationKey": "Sheep",
+            "AudioPath": "assets/tr-TR/Mails/25.wav"
+        },
+        {
+            "TranslationKey": "Goats",
+            "AudioPath": "assets/tr-TR/Mails/26.wav"
+        },
+        {
+            "TranslationKey": "Pigs",
+            "AudioPath": "assets/tr-TR/Mails/27.wav"
+        },
+        {
+            "TranslationKey": "SeaAmulet",
+            "AudioPath": "assets/tr-TR/Mails/28.wav"
+        },
+        {
+            "TranslationKey": "Bouquet",
+            "AudioPath": "assets/tr-TR/Mails/29.wav"
+        },
+        {
+            "TranslationKey": "RobinCooking",
+            "AudioPath": "assets/tr-TR/Mails/30.wav"
+        },
+        {
+            "TranslationKey": "DemetriusCooking",
+            "AudioPath": "assets/tr-TR/Mails/31.wav"
+        },
+        {
+            "TranslationKey": "LinusCooking",
+            "AudioPath": "assets/tr-TR/Mails/32.wav"
+        },
+        {
+            "TranslationKey": "PierreCooking",
+            "AudioPath": "assets/tr-TR/Mails/33.wav"
+        },
+        {
+            "TranslationKey": "CarolineCooking",
+            "AudioPath": "assets/tr-TR/Mails/34.wav"
+        },
+        {
+            "TranslationKey": "GeorgeCooking",
+            "AudioPath": "assets/tr-TR/Mails/35.wav"
+        },
+        {
+            "TranslationKey": "EvelynCooking",
+            "AudioPath": "assets/tr-TR/Mails/36.wav"
+        },
+        {
+            "TranslationKey": "PamCooking",
+            "AudioPath": "assets/tr-TR/Mails/37.wav"
+        },
+        {
+            "TranslationKey": "LewisCooking",
+            "AudioPath": "assets/tr-TR/Mails/38.wav"
+        },
+        {
+            "TranslationKey": "GusCooking",
+            "AudioPath": "assets/tr-TR/Mails/39.wav"
+        },
+        {
+            "TranslationKey": "ClintCooking",
+            "AudioPath": "assets/tr-TR/Mails/40.wav"
+        },
+        {
+            "TranslationKey": "JodiCooking",
+            "AudioPath": "assets/tr-TR/Mails/41.wav"
+        },
+        {
+            "TranslationKey": "KentCooking",
+            "AudioPath": "assets/tr-TR/Mails/42.wav"
+        },
+        {
+            "TranslationKey": "EmilyCooking",
+            "AudioPath": "assets/tr-TR/Mails/43.wav"
+        },
+        {
+            "TranslationKey": "MarnieCooking",
+            "AudioPath": "assets/tr-TR/Mails/44.wav"
+        },
+        {
+            "TranslationKey": "ShaneCooking",
+            "AudioPath": "assets/tr-TR/Mails/45.wav"
+        },
+        {
+            "TranslationKey": "SandyCooking",
+            "AudioPath": "assets/tr-TR/Mails/46.wav"
+        },
+        {
+            "TranslationKey": "WillyCooking",
+            "AudioPath": "assets/tr-TR/Mails/47.wav"
+        },
+        {
+            "TranslationKey": "mom1",
+            "AudioPath": "assets/tr-TR/Mails/48.wav"
+        },
+        {
+            "TranslationKey": "mom2",
+            "AudioPath": "assets/tr-TR/Mails/49.wav"
+        },
+        {
+            "TranslationKey": "mom3",
+            "AudioPath": "assets/tr-TR/Mails/50.wav"
+        },
+        {
+            "TranslationKey": "mom4",
+            "AudioPath": "assets/tr-TR/Mails/51.wav"
+        },
+        {
+            "TranslationKey": "dad1",
+            "AudioPath": "assets/tr-TR/Mails/52.wav"
+        },
+        {
+            "TranslationKey": "dad2",
+            "AudioPath": "assets/tr-TR/Mails/53.wav"
+        },
+        {
+            "TranslationKey": "dad3",
+            "AudioPath": "assets/tr-TR/Mails/54.wav"
+        },
+        {
+            "TranslationKey": "dad4",
+            "AudioPath": "assets/tr-TR/Mails/55.wav"
+        },
+        {
+            "TranslationKey": "newsstory",
+            "AudioPath": "assets/tr-TR/Mails/56.wav"
+        },
+        {
+            "TranslationKey": "pierreBackpack",
+            "AudioPath": "assets/tr-TR/Mails/57.wav"
+        },
+        {
+            "TranslationKey": "pierreHours",
+            "AudioPath": "assets/tr-TR/Mails/58.wav"
+        },
+        {
+            "TranslationKey": "robinKitchenLetter",
+            "AudioPath": "assets/tr-TR/Mails/59.wav"
+        },
+        {
+            "TranslationKey": "quest10",
+            "AudioPath": "assets/tr-TR/Mails/60.wav"
+        },
+        {
+            "TranslationKey": "quest35",
+            "AudioPath": "assets/tr-TR/Mails/61.wav"
+        },
+        {
+            "TranslationKey": "quest100",
+            "AudioPath": "assets/tr-TR/Mails/62.wav"
+        },
+        {
+            "TranslationKey": "CF_Fish",
+            "AudioPath": "assets/tr-TR/Mails/63.wav"
+        },
+        {
+            "TranslationKey": "adoptionLetter",
+            "AudioPath": "assets/tr-TR/Mails/64.wav"
+        },
+        {
+            "TranslationKey": "stardewHeroMine",
+            "AudioPath": "assets/tr-TR/Mails/65.wav"
+        },
+        {
+            "TranslationKey": "fertilizers",
+            "AudioPath": "assets/tr-TR/Mails/66.wav"
+        },
+        {
+            "TranslationKey": "fertilizers2",
+            "AudioPath": "assets/tr-TR/Mails/67.wav"
+        },
+        {
+            "TranslationKey": "abbySpiritBoard",
+            "AudioPath": "assets/tr-TR/Mails/68.wav"
+        },
+        {
+            "TranslationKey": "pennySpa",
+            "AudioPath": "assets/tr-TR/Mails/69.wav"
+        },
+        {
+            "TranslationKey": "incubator",
+            "AudioPath": "assets/tr-TR/Mails/70.wav"
+        },
+        {
+            "TranslationKey": "hatter",
+            "AudioPath": "assets/tr-TR/Mails/71.wav"
+        },
+        {
+            "TranslationKey": "Beat_PK",
+            "AudioPath": "assets/tr-TR/Mails/72.wav"
+        },
+        {
+            "TranslationKey": "JunimoKart",
+            "AudioPath": "assets/tr-TR/Mails/73.wav"
+        },
+        {
+            "TranslationKey": "elliottReading",
+            "AudioPath": "assets/tr-TR/Mails/74.wav"
+        },
+        {
+            "TranslationKey": "elliottBoat",
+            "AudioPath": "assets/tr-TR/Mails/75.wav"
+        },
+        {
+            "TranslationKey": "harveyBalloon",
+            "AudioPath": "assets/tr-TR/Mails/76.wav"
+        },
+        {
+            "TranslationKey": "samMessage",
+            "AudioPath": "assets/tr-TR/Mails/77.wav"
+        },
+        {
+            "TranslationKey": "joshMessage",
+            "AudioPath": "assets/tr-TR/Mails/78.wav"
+        },
+        {
+            "TranslationKey": "lewisStatue",
+            "AudioPath": "assets/tr-TR/Mails/79.wav"
+        },
+        {
+            "TranslationKey": "marnieAutoGrabber",
+            "AudioPath": "assets/tr-TR/Mails/80.wav"
+        },
+        {
+            "TranslationKey": "EmilyClothingTherapy",
+            "AudioPath": "assets/tr-TR/Mails/81.wav"
+        },
+        {
+            "TranslationKey": "EmilyCamping",
+            "AudioPath": "assets/tr-TR/Mails/82.wav"
+        },
+        {
+            "TranslationKey": "EmilyDoneCamping",
+            "AudioPath": "assets/tr-TR/Mails/83.wav"
+        },
+        {
+            "TranslationKey": "foundLostTools",
+            "AudioPath": "assets/tr-TR/Mails/84.wav"
+        },
+        {
+            "TranslationKey": "fishing2",
+            "AudioPath": "assets/tr-TR/Mails/85.wav"
+        },
+        {
+            "TranslationKey": "fishing6",
+            "AudioPath": "assets/tr-TR/Mails/86.wav"
+        },
+        {
+            "TranslationKey": "wizardJunimoNote",
+            "AudioPath": "assets/tr-TR/Mails/87.wav"
+        },
+        {
+            "TranslationKey": "winter_18",
+            "AudioPath": "assets/tr-TR/Mails/88.wav"
+        },
+        {
+            "TranslationKey": "ccBulletinThankYou",
+            "AudioPath": "assets/tr-TR/Mails/89.wav"
+        },
+        {
+            "TranslationKey": "guildQuest",
+            "AudioPath": "assets/tr-TR/Mails/90.wav"
+        },
+        {
+            "TranslationKey": "skullCave",
+            "AudioPath": "assets/tr-TR/Mails/91.wav"
+        },
+        {
+            "TranslationKey": "robinWell",
+            "AudioPath": "assets/tr-TR/Mails/92.wav"
+        },
+        {
+            "TranslationKey": "landslideDone",
+            "AudioPath": "assets/tr-TR/Mails/93.wav"
+        },
+        {
+            "TranslationKey": "QiChallengeComplete",
+            "AudioPath": "assets/tr-TR/Mails/94.wav"
+        },
+        {
+            "TranslationKey": "spring_2_1",
+            "AudioPath": "assets/tr-TR/Mails/95.wav"
+        },
+        {
+            "TranslationKey": "spring_12",
+            "AudioPath": "assets/tr-TR/Mails/96.wav"
+        },
+        {
+            "TranslationKey": "spring_15_1",
+            "AudioPath": "assets/tr-TR/Mails/97.wav"
+        },
+        {
+            "TranslationKey": "spring_23",
+            "AudioPath": "assets/tr-TR/Mails/98.wav"
+        },
+        {
+            "TranslationKey": "summer_10",
+            "AudioPath": "assets/tr-TR/Mails/99.wav"
+        },
+        {
+            "TranslationKey": "summer_28",
+            "AudioPath": "assets/tr-TR/Mails/100.wav"
+        },
+        {
+            "TranslationKey": "fall_9",
+            "AudioPath": "assets/tr-TR/Mails/101.wav"
+        },
+        {
+            "TranslationKey": "fall_15",
+            "AudioPath": "assets/tr-TR/Mails/102.wav"
+        },
+        {
+            "TranslationKey": "fall_26",
+            "AudioPath": "assets/tr-TR/Mails/103.wav"
+        },
+        {
+            "TranslationKey": "winter_7",
+            "AudioPath": "assets/tr-TR/Mails/104.wav"
+        },
+        {
+            "TranslationKey": "winter_14",
+            "AudioPath": "assets/tr-TR/Mails/105.wav"
+        },
+        {
+            "TranslationKey": "spring_11_1",
+            "AudioPath": "assets/tr-TR/Mails/106.wav"
+        },
+        {
+            "TranslationKey": "spring_19_1",
+            "AudioPath": "assets/tr-TR/Mails/107.wav"
+        },
+        {
+            "TranslationKey": "summer_3_1",
+            "AudioPath": "assets/tr-TR/Mails/108.wav"
+        },
+        {
+            "TranslationKey": "summer_14_1",
+            "AudioPath": "assets/tr-TR/Mails/109.wav"
+        },
+        {
+            "TranslationKey": "summer_20_1",
+            "AudioPath": "assets/tr-TR/Mails/110.wav"
+        },
+        {
+            "TranslationKey": "summer_25_1",
+            "AudioPath": "assets/tr-TR/Mails/111.wav"
+        },
+        {
+            "TranslationKey": "fall_3_1",
+            "AudioPath": "assets/tr-TR/Mails/112.wav"
+        },
+        {
+            "TranslationKey": "fall_8_1",
+            "AudioPath": "assets/tr-TR/Mails/113.wav"
+        },
+        {
+            "TranslationKey": "fall_19_1",
+            "AudioPath": "assets/tr-TR/Mails/114.wav"
+        },
+        {
+            "TranslationKey": "winter_2_1",
+            "AudioPath": "assets/tr-TR/Mails/115.wav"
+        },
+        {
+            "TranslationKey": "winter_6_1",
+            "AudioPath": "assets/tr-TR/Mails/116.wav"
+        },
+        {
+            "TranslationKey": "winter_12_1",
+            "AudioPath": "assets/tr-TR/Mails/117.wav"
+        },
+        {
+            "TranslationKey": "winter_17_1",
+            "AudioPath": "assets/tr-TR/Mails/118.wav"
+        },
+        {
+            "TranslationKey": "winter_21_1",
+            "AudioPath": "assets/tr-TR/Mails/119.wav"
+        },
+        {
+            "TranslationKey": "winter_26_1",
+            "AudioPath": "assets/tr-TR/Mails/120.wav"
+        },
+        {
+            "TranslationKey": "spring_1_2",
+            "AudioPath": "assets/tr-TR/Mails/121.wav"
+        },
+        {
+            "TranslationKey": "spring_6_2",
+            "AudioPath": "assets/tr-TR/Mails/122.wav"
+        },
+        {
+            "TranslationKey": "spring_15_2",
+            "AudioPath": "assets/tr-TR/Mails/123.wav"
+        },
+        {
+            "TranslationKey": "spring_21_2",
+            "AudioPath": "assets/tr-TR/Mails/124.wav"
+        },
+        {
+            "TranslationKey": "summer_6_2",
+            "AudioPath": "assets/tr-TR/Mails/125.wav"
+        },
+        {
+            "TranslationKey": "summer_15_2",
+            "AudioPath": "assets/tr-TR/Mails/126.wav"
+        },
+        {
+            "TranslationKey": "summer_21_2",
+            "AudioPath": "assets/tr-TR/Mails/127.wav"
+        },
+        {
+            "TranslationKey": "fall_6_2",
+            "AudioPath": "assets/tr-TR/Mails/128.wav"
+        },
+        {
+            "TranslationKey": "fall_19_2",
+            "AudioPath": "assets/tr-TR/Mails/129.wav"
+        },
+        {
+            "TranslationKey": "winter_5_2",
+            "AudioPath": "assets/tr-TR/Mails/130.wav"
+        },
+        {
+            "TranslationKey": "winter_13_2",
+            "AudioPath": "assets/tr-TR/Mails/131.wav"
+        },
+        {
+            "TranslationKey": "winter_19_2",
+            "AudioPath": "assets/tr-TR/Mails/132.wav"
+        },
+        {
+            "TranslationKey": "winter_24",
+            "AudioPath": "assets/tr-TR/Mails/133.wav"
+        },
+        {
+            "TranslationKey": "passedOut1_Billed_Male",
+            "AudioPath": "assets/tr-TR/Mails/134.wav"
+        },
+        {
+            "TranslationKey": "passedOut1_Billed_Female",
+            "AudioPath": "assets/tr-TR/Mails/135.wav"
+        },
+        {
+            "TranslationKey": "passedOut1_NotBilled_Male",
+            "AudioPath": "assets/tr-TR/Mails/136.wav"
+        },
+        {
+            "TranslationKey": "passedOut1_NotBilled_Female",
+            "AudioPath": "assets/tr-TR/Mails/137.wav"
+        },
+        {
+            "TranslationKey": "passedOut2",
+            "AudioPath": "assets/tr-TR/Mails/138.wav"
+        },
+        {
+            "TranslationKey": "passedOut3_Billed",
+            "AudioPath": "assets/tr-TR/Mails/139.wav"
+        },
+        {
+            "TranslationKey": "passedOut3_NotBilled",
+            "AudioPath": "assets/tr-TR/Mails/140.wav"
+        },
+        {
+            "TranslationKey": "passedOut4",
+            "AudioPath": "assets/tr-TR/Mails/141.wav"
+        },
+        {
+            "TranslationKey": "elliottLetter1",
+            "AudioPath": "assets/tr-TR/Mails/142.wav"
+        },
+        {
+            "TranslationKey": "elliottLetter2",
+            "AudioPath": "assets/tr-TR/Mails/143.wav"
+        },
+        {
+            "TranslationKey": "elliottLetter3",
+            "AudioPath": "assets/tr-TR/Mails/144.wav"
+        },
+        {
+            "TranslationKey": "elliottLetter4",
+            "AudioPath": "assets/tr-TR/Mails/145.wav"
+        },
+        {
+            "TranslationKey": "elliottLetter5",
+            "AudioPath": "assets/tr-TR/Mails/146.wav"
+        },
+        {
+            "TranslationKey": "elliottLetter6",
+            "AudioPath": "assets/tr-TR/Mails/147.wav"
+        },
+        {
+            "TranslationKey": "MarlonRecovery",
+            "AudioPath": "assets/tr-TR/Mails/148.wav"
+        },
+        {
+            "TranslationKey": "RarecrowSociety",
+            "AudioPath": "assets/tr-TR/Mails/149.wav"
+        },
+        {
+            "TranslationKey": "CarolineTea",
+            "AudioPath": "assets/tr-TR/Mails/150.wav"
+        },
+        {
+            "TranslationKey": "WoodChipper",
+            "AudioPath": "assets/tr-TR/Mails/151.wav"
+        },
+        {
+            "TranslationKey": "willyBackRoomInvitation",
+            "AudioPath": "assets/tr-TR/Mails/152.wav"
+        },
+        {
+            "TranslationKey": "KrobusCrafting",
+            "AudioPath": "assets/tr-TR/Mails/153.wav"
+        },
+        {
+            "TranslationKey": "georgeGifts",
+            "AudioPath": "assets/tr-TR/Mails/154.wav"
+        },
+        {
+            "TranslationKey": "robinResource",
+            "AudioPath": "assets/tr-TR/Mails/155.wav"
+        },
+        {
+            "TranslationKey": "ClintReward",
+            "AudioPath": "assets/tr-TR/Mails/156.wav"
+        },
+        {
+            "TranslationKey": "ClintReward2",
+            "AudioPath": "assets/tr-TR/Mails/157.wav"
+        },
+        {
+            "TranslationKey": "willyBugWadCutscene",
+            "AudioPath": "assets/tr-TR/Mails/158.wav"
+        },
+        {
+            "TranslationKey": "MSB_Pierre",
+            "AudioPath": "assets/tr-TR/Mails/159.wav"
+        },
+        {
+            "TranslationKey": "MSB_Lewis",
+            "AudioPath": "assets/tr-TR/Mails/160.wav"
+        },
+        {
+            "TranslationKey": "WizardReward",
+            "AudioPath": "assets/tr-TR/Mails/161.wav"
+        },
+        {
+            "TranslationKey": "WizardReward2",
+            "AudioPath": "assets/tr-TR/Mails/162.wav"
+        },
+        {
+            "TranslationKey": "DemetriusReward",
+            "AudioPath": "assets/tr-TR/Mails/163.wav"
+        },
+        {
+            "TranslationKey": "willyHours",
+            "AudioPath": "assets/tr-TR/Mails/164.wav"
+        },
+        {
+            "TranslationKey": "linusTrashCleanup",
+            "AudioPath": "assets/tr-TR/Mails/165.wav"
+        },
+        {
+            "TranslationKey": "gusGiantOmelet",
+            "AudioPath": "assets/tr-TR/Mails/166.wav"
+        },
+        {
+            "TranslationKey": "pamNewChannel",
+            "AudioPath": "assets/tr-TR/Mails/167.wav"
+        },
+        {
+            "TranslationKey": "emilyStones",
+            "AudioPath": "assets/tr-TR/Mails/168.wav"
+        },
+        {
+            "TranslationKey": "carolineSO",
+            "AudioPath": "assets/tr-TR/Mails/169.wav"
+        },
+        {
+            "TranslationKey": "WillyTropicalFish",
+            "AudioPath": "assets/tr-TR/Mails/170.wav"
+        },
+        {
+            "TranslationKey": "passedOutIsland",
+            "AudioPath": "assets/tr-TR/Mails/171.wav"
+        },
+        {
+            "TranslationKey": "passedOutIsland_Leo",
+            "AudioPath": "assets/tr-TR/Mails/172.wav"
+        },
+        {
+            "TranslationKey": "guntherBones",
+            "AudioPath": "assets/tr-TR/Mails/173.wav"
+        },
+        {
+            "TranslationKey": "LeoCooking",
+            "AudioPath": "assets/tr-TR/Mails/174.wav"
+        },
+        {
+            "TranslationKey": "FizzIntro",
+            "AudioPath": "assets/tr-TR/Mails/175.wav"
+        },
+        {
+            "TranslationKey": "GreenRainGus",
+            "AudioPath": "assets/tr-TR/Mails/176.wav"
+        },
+        {
+            "TranslationKey": "DesertFestival",
+            "AudioPath": "assets/tr-TR/Mails/177.wav"
+        },
+        {
+            "TranslationKey": "MarniePetAdoption",
+            "AudioPath": "assets/tr-TR/Mails/178.wav"
+        },
+        {
+            "TranslationKey": "MarniePetRejectedAdoption",
+            "AudioPath": "assets/tr-TR/Mails/179.wav"
+        }
+    ]
+}

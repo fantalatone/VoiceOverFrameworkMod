@@ -94,6 +94,7 @@ namespace VoiceOverFrameworkMod
                 });
             }
 
+            // if location or play is null reset
             if (Game1.currentLocation == null || Game1.player == null)
             {
                 if (lastDialogueText != null) ResetDialogueState();

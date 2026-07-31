@@ -62,6 +62,9 @@ namespace VoiceOverFrameworkMod
 
             bool eventActive = Game1.currentLocation?.currentEvent != null;
 
+            var letterBox = Game1.activeClickableMenu as LetterViewerMenu;
+            CheckForMailV3();
+
             var dlgBox = Game1.activeClickableMenu as DialogueBox;
             string speakerName = dlgBox?.characterDialogue?.speaker?.Name ?? Game1.currentSpeaker?.Name;
 
@@ -369,9 +372,6 @@ namespace VoiceOverFrameworkMod
             CurrentDialogueOriginalKey = null;
             IsMultiPageDialogueActive = false;
         }
-
-
-       
 
         private Event GetCurrentEvent()
         {

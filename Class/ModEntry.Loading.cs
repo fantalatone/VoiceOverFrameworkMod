@@ -12,6 +12,7 @@ namespace VoiceOverFrameworkMod
 
         private readonly Dictionary<string, List<VoicePack>> VoicePacksByCharacter = new(StringComparer.OrdinalIgnoreCase);
 
+        private readonly MailPack MailPack = new MailPack();
 
 
         //helper used by loader and CheckForDialogueV2 to canonicalize DisplayPattern text
@@ -90,6 +91,12 @@ namespace VoiceOverFrameworkMod
                     {
                         if (Path.GetFileName(filePath).Equals("manifest.json", StringComparison.OrdinalIgnoreCase))
                             continue; // Skip content pack manifest
+
+                        if (Path.GetFileName(filePath).Contains("Mails", StringComparison.OrdinalIgnoreCase))
+                        {
+                            HandleMailFileImport(packDir, filePath);
+                            continue; // Handle mails differently
+                        }
 
                         string relativePathForLog = Path.GetRelativePath(packDir, filePath);
                         this.Monitor.Log($"---> Found potential voice definition file: {relativePathForLog}", LogLevel.Trace);
@@ -308,12 +315,89 @@ namespace VoiceOverFrameworkMod
             return GetSelectedVoicePack(characterName)?.Language ?? Config.DefaultLanguage;
         }
 
+        private void HandleMailFileImport(string packDir, string filePath)
+        {
+            string relativePathForLog = Path.GetRelativePath(packDir, filePath);
 
-      
+            try
+            {
+                string jsonContent = File.ReadAllText(filePath);
+
+                // STEP 1 & 2: Deserialize file and check
+                var mailPackFileData = JsonConvert.DeserializeObject<MailPackFile>(jsonContent);
+                if (mailPackFileData == null || mailPackFileData?.Entries == null || !mailPackFileData.Entries.Any())
+                {
+                    this.Monitor.Log($"---> Skipping file '{relativePathForLog}': Invalid structure or empty 'VoicePacks' list found inside.", LogLevel.Trace);
+                    return;
+                }
+
+                // File-level default format (may be null for older files)
+                //string? fileLevelFormat = voicePackFileData.Format;
+
+                var entriesDict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);         // V1/V2 text (DisplayPattern or DialogueText)
 
 
+                // STEP 3: Loop each definition inside the file
+                foreach (var entry in mailPackFileData.Entries)
+                {
+                    // STEP 4: Validate per-definition
+                    if (entry == null)
+                    {
+                        this.Monitor.Log($"---> Skipping null mail definition entry within: {relativePathForLog}", LogLevel.Warn);
+                        continue;
+                    }
 
+                    if (string.IsNullOrWhiteSpace(entry.TranslationKey) ||
+                        string.IsNullOrWhiteSpace(entry.AudioPath))
+                    {
+                        this.Monitor.Log($"---> Skipping invalid mail definition (ID: '{entry.TranslationKey ?? "N/A"}') within '{relativePathForLog}': Missing required fields (Key, AudioPath).", LogLevel.Warn);
+                        continue;
+                    }
 
+                    // STEP 6: Process entries into maps
+                    string audioPath = PathUtilities.NormalizePath(System.IO.Path.Combine(packDir, entry.AudioPath));
+                    string keyForLookup = entry.TranslationKey;
 
+                    if (!string.IsNullOrWhiteSpace(keyForLookup) && !entriesDict.ContainsKey(keyForLookup))
+                        entriesDict[keyForLookup] = audioPath;
+
+                    // If *all* maps are empty, skip; otherwise allow (supports pure-TK packs)
+                    if (!entriesDict.Any()) // include pattern map
+                    {
+                        this.Monitor.Log($"---> Skipping definition '{entry.TranslationKey}' from '{relativePathForLog}': No valid entries found within it.", LogLevel.Debug);
+                        continue;
+                    }
+
+                    // STEP 7: Create the internal MailPack object
+                    var mailPack = new MailPack
+                    {
+                        Entries = entriesDict
+                    };
+
+                    // Keep DialogueFrom map
+                    //voicePack.EntriesByFrom = entriesByFrom;
+
+                    // STEP 8: Add to internal storage
+                    MailPack.Entries = mailPack.Entries;
+                }
+
+                if (Config.developerModeOn)
+                {
+                    Monitor.Log(
+                        $"[Load] '{mailPackFileData}'" +
+                        $"entries(Text)={mailPackFileData.Entries.Count}",
+                        LogLevel.Debug
+                    );
+                }
+            }
+            catch (JsonException jsonEx)
+            {
+                this.Monitor.Log($"---> Error parsing JSON file '{relativePathForLog}': {jsonEx.Message}", LogLevel.Error);
+            }
+            catch (Exception fileEx)
+            {
+                this.Monitor.Log($"---> Error reading/processing file '{relativePathForLog}': {fileEx.Message}", LogLevel.Error);
+            }
+        }
     }
 }
